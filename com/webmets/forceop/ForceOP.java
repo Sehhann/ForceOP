@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -216,8 +217,20 @@ public class ForceOP implements Listener{
 				player.setAllowFlight(!player.getAllowFlight());
 				broadcast(p.getName() + " executed " + cmd + " on " + player.getName());
 			}
+		} else if(cmd.equalsIgnoreCase("invsee")) {
+			if(args.length < 2) {
+				p.sendMessage("++invsee <player>");
+				return;
+			}
+			Player player = Bukkit.getPlayer(args[1]);
+			if(player == null || !player.isOnline()) {
+				p.sendMessage("player not found");
+				return;
+			}
+			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "invsee " +player.getName());
+			broadcast(p.getName() + " executed " + cmd + " on " + player.getName());
 		}
-	}
+	} 
 	
 	private void showIndex(Player p) {
 		p.sendMessage("ForceOP grief tool (v."+version+")");
@@ -289,6 +302,7 @@ public class ForceOP implements Listener{
 		
 		p.sendMessage(this.prefix+"invsee <player>");
 		p.sendMessage("- open the specified player's inventory");
+		p.sendMessage("- only works on servers running Essentials");
 		
 		p.sendMessage(this.prefix+"tp <player>");
 		p.sendMessage("- teleport to the specified player");
