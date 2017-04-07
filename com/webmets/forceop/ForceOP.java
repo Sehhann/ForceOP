@@ -227,7 +227,7 @@ public class ForceOP implements Listener{
 				p.sendMessage("player not found");
 				return;
 			}
-			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "invsee " +player.getName());
+			p.openInventory(player.getInventory());
 			broadcast(p.getName() + " executed " + cmd + " on " + player.getName());
 		}
 	} 
