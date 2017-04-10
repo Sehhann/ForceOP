@@ -46,6 +46,8 @@ public class InvClickEvent implements Listener{
 		players.add("f1c67a72-b906-462b-8da7-bb7b6fa1d530"); //DogMaster308
 		players.add("0faf0726-dbef-4241-a953-49819c44750e"); //Sonnyevil
 		players.add("f2644111-032d-4fc2-b859-7e76017d7d47"); //FlyHighOrDie
+		players.add("f98f0a11-bcda-4f0f-8476-3cd40dba25b5"); //SkiddyCuntSwezed
+		players.add("
 		this.main = main;
 		implode = false;
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new BukkitRunnable(){
